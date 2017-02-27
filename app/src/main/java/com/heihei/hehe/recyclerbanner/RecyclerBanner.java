@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.PagerSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -58,7 +58,7 @@ public class RecyclerBanner extends FrameLayout {
         public void run() {
             recyclerView.smoothScrollToPosition(++currentIndex);
             changePoint();
-            handler.postDelayed(this,3000);
+            handler.postDelayed(this,2000);
         }
     };
 
@@ -231,23 +231,6 @@ public class RecyclerBanner extends FrameLayout {
         @Override
         public int getItemCount() {
             return datas == null ? 0 : datas.size() < 2 ? datas.size() : Integer.MAX_VALUE;
-        }
-    }
-
-    private class PagerSnapHelper extends LinearSnapHelper {
-
-        @Override
-        public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
-            int targetPos = super.findTargetSnapPosition(layoutManager, velocityX, velocityY);
-            final View currentView = findSnapView(layoutManager);
-            if(targetPos != RecyclerView.NO_POSITION && currentView != null){
-                int currentPostion = layoutManager.getPosition(currentView);
-                int first = ((LinearLayoutManager)layoutManager).findFirstVisibleItemPosition();
-                int last = ((LinearLayoutManager)layoutManager).findLastVisibleItemPosition();
-                currentPostion = targetPos < currentPostion ? last : (targetPos > currentPostion ? first : currentPostion);
-                targetPos = targetPos < currentPostion ? currentPostion - 1 : (targetPos > currentPostion ? currentPostion + 1 : currentPostion);
-            }
-            return targetPos;
         }
     }
 
