@@ -34,7 +34,7 @@ public class RecyclerBanner extends FrameLayout {
     LinearLayout linearLayout;
     GradientDrawable defaultDrawable,selectedDrawable;
 
-    ReyclerAdapter adapter;
+    RecyclerAdapter adapter;
     OnPagerClickListener onPagerClickListener;
     private List<BannerEntity> datas = new ArrayList<>();
 
@@ -95,7 +95,7 @@ public class RecyclerBanner extends FrameLayout {
 
         new PagerSnapHelper().attachToRecyclerView(recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false));
-        adapter = new ReyclerAdapter();
+        adapter = new RecyclerAdapter();
         recyclerView.setAdapter(adapter);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -202,7 +202,7 @@ public class RecyclerBanner extends FrameLayout {
         super.onWindowVisibilityChanged(visibility);
     }
     // 内置适配器
-    private class ReyclerAdapter extends RecyclerView.Adapter{
+    private class RecyclerAdapter extends RecyclerView.Adapter{
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
